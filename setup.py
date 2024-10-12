@@ -1,10 +1,10 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='func',
     version='1.0.0',
-    packages=['func'],
+    packages=find_packages(),
     install_requires=[],
-    author='Your Name',
-    author_email='your_email@example.com'
+    author='Alexander Cook',
+    author_email='telestoalchemist@outlook.com'
 )
