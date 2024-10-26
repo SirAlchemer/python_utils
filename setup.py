@@ -1,10 +1,21 @@
-from setuptools import setup, find_packages
+import setuptools
 
-setup(
+setuptools.setup(
     name='func',
     version='1.0.0',
-    packages=find_packages(),
-    install_requires=[],
     author='Alexander Cook',
-    author_email='telestoalchemist@outlook.com'
+    author_email='alchemerxander@gmail.com',
+    description='Bunch of utils',
+    long_description='A list of utils i use for every project',
+    url='https://github.com/SirAlchemer/func/',
+    packages=setuptools.find_packages(),
+    install_requires=[
+        'dependency1',
+        'dependency2',
+    ],
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+    ],
 )
