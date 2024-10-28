@@ -47,7 +47,7 @@ def get_bool(prompt: Optional[str]) -> bool:
             print(f"{x} is not a boolean")
 
 
-# ______get_string_______#
+#______get_string_______#
 def get_string(prompt: Optional[str]) -> str:
     """
     Takes in prompt as an argument and then gains user input
@@ -59,3 +59,12 @@ def get_string(prompt: Optional[str]) -> str:
             return x
         else:
             print("Please enter a non-empty string")
+
+
+# ______yes_or_no_______#
+def yes_or_no(prompt: str = 'Enter for no: '):
+    data = input(prompt)
+    if bool(data):
+        return True
+    else:
+        return False
