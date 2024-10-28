@@ -11,5 +11,3 @@ def create_dict(keys, datas, is_global=False):
         globals(data_library)
     else:
         return data_library
-
-    []
