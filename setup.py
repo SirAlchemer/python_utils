@@ -9,10 +9,7 @@ setuptools.setup(
     long_description='A list of utils i use for every project',
     url='https://github.com/SirAlchemer/func/',
     packages=setuptools.find_packages(),
-    install_requires=[
-        'dependency1',
-        'dependency2',
-    ],
+    install_requires=[],
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
