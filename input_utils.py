@@ -1,4 +1,4 @@
-from typing import Optional
+
 
 def get_attr(prompt, data_type = str):
     while True:
