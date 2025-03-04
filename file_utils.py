@@ -4,7 +4,7 @@ import pickle
 from typing import Any
 from . import encryption_utils as enc
 
-def load_from_json(filename: str, path: str, dev: bool = False) -> Any:
+def load_from_json(filename: str, dev: bool = False) -> dict:
     """
     Loads data from a JSON file at the specified path.
 
@@ -16,7 +16,7 @@ def load_from_json(filename: str, path: str, dev: bool = False) -> Any:
     Returns:
         Any: The loaded data, or None if the file is not found or the JSON is invalid.
     """
-
+    data = None
     # Try to open the JSON file and load its contents
     try:
         # Try to open the file in read mode
@@ -35,36 +35,7 @@ def load_from_json(filename: str, path: str, dev: bool = False) -> Any:
         return None
 
     # Determine the type of the loaded data
-    if isinstance(data, dict):
-        data_type = 'dict'
-    elif isinstance(data, list):
-        data_type = 'list'
-    else:
-        data_type = 'single'
-
-    # Load the data from the specified path
-    if data_type == 'dict':
-        # If the data is a dictionary, use the get method to load the data
-        return data.get(path)
-    elif data_type == 'list':
-        # If the data is a list, check if the path is a valid index
-        if path.isdigit() and 0 <= int(path) < len(data):
-            # If the path is a valid index, return the data at that index
-            return data[int(path)]
-        else:
-            # If the path is not a valid index, raise a ValueError
-            raise ValueError("Invalid key for list")
-    elif data_type == 'single':
-        # If the data is a single value, check if the path is 'value'
-        if path == 'value':
-            # If the path is 'value', return the data
-            return data
-        else:
-            # If the path is not 'value', raise a ValueError
-            raise ValueError("Invalid key for single value")
-    else:
-        # If the data type is not recognized, raise a ValueError
-        raise ValueError("Invalid data type")
+    return data
 
 
 def save_to_json(filename: str, path: str, data) -> None:
@@ -183,7 +154,8 @@ def delete_json_data(filename):
         file.write("")
 
 
-def load_from_bin(filename: str, path: str, dev: bool = False):
+def load_from_bin(filename: str, dev: bool = False) -> dict:
+    data = {}
     try:
         with open(filename, "rb") as file:
             data = file.read()
@@ -203,28 +175,7 @@ def load_from_bin(filename: str, path: str, dev: bool = False):
         if dev == True:
             print(f"Error deserializing data from file '{filename}': {e}")
         return None
-
-    if isinstance(data, dict):
-        data_type = 'dict'
-    elif isinstance(data, list):
-        data_type = 'list'
-    else:
-        data_type = 'single'
-
-    if data_type == 'dict':
-        return data.get(path)
-    elif data_type == 'list':
-        if path.isdigit() and 0 <= int(path) < len(data):
-            return data[int(path)]
-        else:
-            raise ValueError("Invalid key for list")
-    elif data_type == 'single':
-        if path == 'value':
-            return data
-        else:
-            raise ValueError("Invalid key for single value")
-    else:
-        raise ValueError("Invalid data type")
+    return data
 
 
 def save_to_bin(filename: str, path: str, data):
