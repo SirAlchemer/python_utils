@@ -1,4 +1,4 @@
-from util_classes import Color   
+from .util_classes import Color   
     
 def ANSI(string: str, **kwargs) -> str:
     if kwargs.get("red", False) == True:
