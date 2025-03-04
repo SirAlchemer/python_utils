@@ -1,60 +1,66 @@
-
-
-def add_prefix(text, *args):
-    """
-    Add ANSI escape sequence prefixes to the given text.
-
-    Args:
-        text (str): The text to which the prefixes will be added.
-        *args (str): Variable number of prefix arguments.
-
-    Returns:
-        str: The text with the added prefixes.
-
-    Prefixes:
-        black, red, green, yellow, blue, magenta, cyan, white
-        bg_black, bg_red, bg_green, bg_yellow, bg_blue, bg_magenta, bg_cyan, bg_white
-        bold, underline, inverse
-
-    Example:
-        print(add_prefix("Hello, world!", "red", "bg_black", "bold"))
-    """
-
-    prefixes = "\033["
-    valid_prefixes = {
-        "black": "30",
-        "red": "31",
-        "green": "32",
-        "yellow": "33",
-        "blue": "34",
-        "magenta": "35",
-        "cyan": "36",
-        "white": "37",
-        "bold": "1",
-        "underline": "4",
-        "inverse": "7",
-    }
-    valid_bg_prefixes = {
-        "bg_black": "40",
-        "bg_red": "41",
-        "bg_green": "42",
-        "bg_yellow": "43",
-        "bg_blue": "44",
-        "bg_magenta": "45",
-        "bg_cyan": "46",
-        "bg_white": "47",
-    }
-
-    for prefix in args:
-        if prefix in valid_prefixes:
-            prefixes += f"{valid_prefixes[prefix]};"
-        elif prefix in valid_bg_prefixes:
-            prefixes += f"{valid_bg_prefixes[prefix]};"
-        else:
-            raise ValueError(f"Invalid prefix: {prefix}")
-
-    # Remove the trailing semicolon
-    prefixes = prefixes.rstrip(";")
-
-    return f"{prefixes}m{text}\033[0m"
-
+from util_classes import Color   
+    
+def ANSI(string: str, **kwargs) -> str:
+    if kwargs.get("red", False) == True:
+        string = Color.RED + string
+    if kwargs.get("cyan", False) == True:
+        string = Color.CYAN + string
+    if kwargs.get("add_end_ansi", True) == False: 
+        return string
+    if kwargs.get("bold", False) == True:
+        string = Color.BOLD + string
+    if kwargs.get("dark_gray", False) == True:
+        string = Color.DARK_GRAY + string
+    if kwargs.get("italics", False) == True:
+        string = Color.ITALICS + string
+    if kwargs.get("underline", False) == True:
+        string = Color.UNDERLINE + string
+    if kwargs.get("white_background", False) == True:
+        string = Color.WHITE_BACKGROUND + string
+    if kwargs.get("black", False) == True:
+        string = Color.BLACK + string
+    if kwargs.get("strike_through", False) == True:
+        string = Color.STRIKE_THROUGH + string
+    if kwargs.get("double_underline", False) == True:
+        string = Color.DOUBLE_UNDERLINE + string
+    if kwargs.get("red_background", False) == True:
+        string = Color.RED_BACKGROUND + string
+    if kwargs.get("mint_background", False) == True:
+        string = Color.MINT_BACKGROUND + string
+    if kwargs.get("yellow_background", False) == True:
+        string = Color.YELLOW_BACKGROUND + string
+    if kwargs.get("blue_background", False) == True:
+        string = Color.BlUE_BACKGROUND + string
+    if kwargs.get("magenta_background", False) == True:
+        string = Color.MAGENTA_BACKGROUND + string
+    if kwargs.get("cyan_background", False) == True:
+        string = Color.CYAN_BACKGROUND + string
+    if kwargs.get("white_background", False) == True:
+        string = Color.WHITE_BACKGROUND + string
+    if kwargs.get("overline", False) == True:
+        string = Color.OVER_LINE + string
+    if kwargs.get("light_red", False) == True:
+        string = Color.LIGHT_RED + string
+    if kwargs.get("gray_background", False) == True:
+        string = Color.GRAY_BACKGROUND + string
+    if kwargs.get("light_red_background", False) == True:
+        string = Color.LIGHT_RED_BACKGROUND + string
+    if kwargs.get("gray", False) == True:
+        string = Color.GRAY + string
+    if kwargs.get("mint", False) == True:
+        string = Color.MINT + string
+    if kwargs.get("yellow", False) == True:
+        string = Color.YELLOW + string
+    if kwargs.get("magenta", False) == True:
+        string = Color.MAGENTA + string
+    if kwargs.get("white", False) == True:
+        string = Color.WHITE + string
+    if kwargs.get("light_red", False) == True:
+        string = Color.LIGHT_RED + string
+    if kwargs.get("light_red_background", False) == True:
+        string = Color.LIGHT_RED_BACKGROUND + string
+    if kwargs.get("gray_background", False) == True:
+        string = Color.GRAY_BACKGROUND + string
+    if kwargs.get("light_blue", False) == True:
+        string = Color.CYAN + string
+    return string + Color.END_ANSI
