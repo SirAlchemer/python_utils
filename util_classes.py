@@ -1,6 +1,6 @@
 
 
-class Color:
+class ANSI_Codes:
     END_ANSI = "\033[0m"
     BOLD = '\033[1m'
     DARK_GRAY = '\033[2m'
