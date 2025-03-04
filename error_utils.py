@@ -1,13 +1,16 @@
-import logging
+import traceback
+from typing import Any
 
-
-def raise_error(ErrorName: str, message: str, log_error: str = None) -> None:
-    if log_error != None:
-        CustomError = type(ErrorName, (Exception,), {})
-        logging(log_error)
-        raise CustomError(message)
-    if not isinstance(ErrorName, str):
-        raise ValueError(f'{ErrorName} is not a string!')
-    CustomError = type(ErrorName, (Exception,), {})
-    raise CustomError(message)
-
+def log(file_name: str, var_data: dict[str, Any], extra_details: str = None) -> None:
+    with open(file_name, 'a') as f:
+        f.write(traceback.format_exc())
+        f.write("\n--------------\n\n")
+        for name, value in var_data.items():
+            if type(value) == str:
+                f.write(f'{name}="{value}"\n')
+            else:
+                f.write(f'{name}={value}\n')
+        if extra_details:
+            f.write(f'\n{extra_details}\n~~~~~~~~~~~~~~~~~~\n\n')
+        else:
+            f.write('\n~~~~~~~~~~~~~~~~~~\n\n')
