@@ -1,6 +1,7 @@
-from . import file_utils as fl
-from dataclasses import dataclass, field
-from cryptography.fernet import Fernet
+try:
+    from cryptography.fernet import Fernet
+except ImportError:
+    print("CRITICAL IMPORT ERROR: 'cryptography.fernet' NOT FOUND!!!")
 
 
 def encrypt(data):
