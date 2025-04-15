@@ -21,3 +21,14 @@ def sqrt(value: float | int, pow=2) -> float | int:
 
 def distance_formula(q1: tuple[float | int], q2: tuple[float | int]) -> float | int:
     return abs(sqrt(((q2[0] - q1[0]) ** 2) + (q2[1] - q1[1]) ** 2))
+
+# Lowest common multiplier
+def lcm(a, b):
+    return abs(a * b) // Fraction.gcd(a, b)
+    
+# Greatest common denominator
+def gcd(a, b):
+        while b:
+            a, b = b, a % b
+        return a
+
