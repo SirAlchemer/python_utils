@@ -15,14 +15,14 @@ class Dicts:
     # Add mappings for special characters
     num_to_char.update({idx + 53: char for idx, char in enumerate(special_chars)})
 
-def next_lexicographical_permutation_char(s: str) -> str:
+def next_lexicographical_permutation(s: str) -> str:
     s = list(s)
     for i in range(len(s) - 2, -1, -1):
-        if Dicts.char_to_num[s[i]] < Dicts.char_to_num[s[i + 1]]:
+        if ord(s[i]) < ord(s[i + 1]):
             t = s[i:]
-            m = min(filter(lambda x:  Dicts.char_to_num[x] >  Dicts.char_to_num[t[0]], t))
+            m = min(filter(lambda x:  ord(x) >  ord(t[0]), t))
             t.remove(m)
             t.sort()
             s[i:] = [m] + t
             return "".join(s)
-    return "".join(s)
+    return ""
