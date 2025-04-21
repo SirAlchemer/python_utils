@@ -15,6 +15,20 @@ class Dicts:
     # Add mappings for special characters
     num_to_char.update({idx + 53: char for idx, char in enumerate(special_chars)})
 
+def middle_lexicographical_permutation(string):
+    string = sorted(string)
+    n = len(string)
+    result = []
+    
+    k = (factorial(n) // 2) - 1
+    
+    while n > 0:
+        n -= 1
+        index, k = divmod(k, factorial(n))
+        result.append(string.pop(index))
+        
+    return ''.join(result)
+
 def next_lexicographical_permutation(s: str) -> str:
     s = list(s)
     for i in range(len(s) - 2, -1, -1):
