@@ -21,3 +21,6 @@ def check_neighbours(cell_pos: list[int, int], grid: list[list[bool]]) -> list[b
         else:
             neighbours.append(None)  # Out of bounds
     return neighbours
+
+def get_neighbours(x, y):
+    return {(x + i, y + j) for i in range(-1, 2) for j in range(-1, 2)}
