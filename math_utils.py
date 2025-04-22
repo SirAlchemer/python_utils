@@ -11,6 +11,20 @@ def next_lexicographical_permutation_num(n: int) -> int:
             return int("".join(s))
     return -1
 
+def last_lexicographical_permutation_num(n):
+    s = list(str(n))
+    print(n)
+    for i in range(len(s) - 2, -1, -1):
+        if s[i] > s[i + 1]:
+            t = s[i:]
+            m = max(filter(lambda x: x < t[0], t))
+            t.remove(m)
+            t.sort(reverse=True)
+            s[i:] = [m] + t
+            result = int("".join(s))
+            return result if result < n and s[0] != "0" else -1
+    return -1
+
 def sqrt(value: float | int, pow=2) -> float | int:
     if pow == 2:
         # If the default is square root
