@@ -33,3 +33,35 @@ def draw_equilateral_triangle(pen: turtle.Pen, side_length: float | int, angle: 
     if fill:
         pen.end_fill()
     pen.pu()
+
+def draw_square(pen: turtle.Pen, side_length: float | int, centered: bool = False, line_color: str = 'black', fill: bool = False,
+                fill_color: str = 'black', line_width: float | int = 1, hide_pen: bool = True) -> None:
+    # Setup pen
+    pen.pu()
+    pen.color(line_color)
+    pen.width(line_width)
+    if hide_pen:
+        pen.hideturtle()
+
+    # Centering logic
+    if centered:
+        pen.setheading(90)
+        pen.backward(side_length / 2)
+        pen.setheading(0)
+        pen.backward(side_length / 2)
+
+
+    # Start drawing
+    pen.pd()  # Pen down
+    if fill:
+        pen.fillcolor(fill_color)
+        pen.begin_fill()
+
+    for _ in range(4):
+        pen.forward(side_length)
+        pen.left(90)
+
+    if fill:
+        pen.end_fill()
+
+    pen.pu()
