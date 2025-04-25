@@ -22,6 +22,28 @@ def check_neighbours(cell_pos: list[int, int], grid: list[list[bool]]) -> list[b
             neighbours.append(None)  # Out of bounds
     return neighbours
 
+def validate_coordinates(x, y, grid):
+    """
+    Validates if the coordinate (x, y) is within the bounds of a 2D grid.
+
+    Args:
+        x (int): Row index (0-based).
+        y (int): Column index (0-based).
+        grid (list of lists): The 2D grid represented as a list of lists.
+
+    Returns:
+        bool: True if the coordinates are valid, False otherwise.
+    """
+    # Check if x is within the row bounds
+    if x < 0 or x >= len(grid):
+        return False
+    
+    # Check if y is within the column bounds for the given row
+    if y < 0 or y >= len(grid[x]):
+        return False
+    
+    return True
+
 def get_neighbours(x, y):
     return {(x + i, y + j) for i in range(-1, 2) for j in range(-1, 2)}
 
