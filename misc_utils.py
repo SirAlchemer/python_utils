@@ -24,3 +24,36 @@ def check_neighbours(cell_pos: list[int, int], grid: list[list[bool]]) -> list[b
 
 def get_neighbours(x, y):
     return {(x + i, y + j) for i in range(-1, 2) for j in range(-1, 2)}
+
+def get_neighbours_exclude_corners_and_middle(x, y):
+    # Generate all neighbors excluding corners and middle
+    return {
+        (x + i, y + j)
+        for i in range(-1, 2)
+        for j in range(-1, 2)
+        if (i == 0 or j == 0) and not (i == 0 and j == 0)
+    }
+
+def get_corners(x, y):
+    # Include only the diagonal corner neighbors
+    return {
+        (x - 1, y - 1),  # Top-left corner
+        (x - 1, y + 1),  # Top-right corner
+        (x + 1, y - 1),  # Bottom-left corner
+        (x + 1, y + 1)   # Bottom-right corner
+    }
+
+# Example usage
+print(get_corners(2, 3))
+
+def get_surounding(x, y):
+    # Generate all neighbors and exclude the middle point
+    return {
+        (x + i, y + j)
+        for i in range(-1, 2)
+        for j in range(-1, 2)
+        if not (i == 0 and j == 0)  # Exclude the middle point
+    }
+
+# Example usage
+print(get_all_but_middle(2, 3))
