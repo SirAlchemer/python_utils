@@ -1,12 +1,22 @@
 
-
-def get_int(prompt: str, valids: list[int] = None):
+def get_int(prompt: str, valids: tuple[int] = None) -> int:
     while True:
+        integer = input(prompt)
         try:
-            integer = int(input(prompt))
-            if not valids or integer in valids:
+            integer = int(integer)
+            if valids == None or integer in valids:
                 return integer
-            else:
-                print(f'{integer} is not in the valid integers. ({", ".join(valids)})')
-        except (ValueError, TypeError):
-            print(f'{integer} is not a valid integer. Please enter a vaild integer.')
+            print(f'{integer} is not among the valid integers!: {valids}')
+        except ValueError:
+            print(f'{integer} is not among the valid integers!: {valids}')
+
+def get_num(prompt: str, valids: tuple[float | int] = None) -> float | int:
+    while True:
+        integer = input(prompt)
+        try:
+            integer = eval(integer)
+            if valids == None or integer in valids:
+                return integer
+            print(f'{integer} is not among the valid numbers!: {valids}')
+        except ValueError:
+            print(f'{integer} is not a valid number!: {valids}')
